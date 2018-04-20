@@ -26,8 +26,7 @@
 
 (library (trabutium trabutium)
   (export
-    route-get
-    route-post
+    route-init
     get
     post
     host?
@@ -61,8 +60,7 @@
                 y))))
 
 
-(define route-get (list '()))
-(define route-post (list '()))
+(define route-init (list '()))
 
 
 (define push
@@ -76,11 +74,11 @@
 
 (define get
     (lambda (path function)
-        (push route-get path function)))
+        (push get-route path function)))
 
 (define post
     (lambda (path function)
-        (push route-post path function)))
+        (push post-route path function)))
 
 
 
