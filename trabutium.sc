@@ -29,6 +29,7 @@
     route-init
     get
     post
+    start-server
     host?
     user-agent?
     accept-language?
