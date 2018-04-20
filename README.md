@@ -8,9 +8,6 @@ https://github.com/guenchi/Igropyr
 
 ***Igropyr*** : ***Trabutium*** = ***Node*** : ***Express***
 
-***Trabutium*** is more ***Express*** than ***Ballista***
-
-
 
 
 ***easily to write the router***
