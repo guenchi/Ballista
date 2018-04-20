@@ -157,6 +157,11 @@
                 handle404
                 x))))
 
+ 
+(define start-server
+    (lambda (x y)
+        (server (request res-get) (request res-post) x y))) 
+ 
 
 (define handle404
     (lambda (x . y)
