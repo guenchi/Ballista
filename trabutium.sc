@@ -159,9 +159,19 @@
                 x))))
 
  
+(define handle-get
+    (request
+        (lambda (request-header path-info query-string)
+            ((router route-get path-info) request-header path-info query-string))))
+
+(define handle-post
+    (request
+        (lambda (request-header path-info payload)
+            ((router route-post path-info) request-header path-info payload))))
+
 (define start-server
     (lambda (x y)
-        (server (request res-get) (request res-post) x y))) 
+        (server handle-get handle-post x y))) 
  
 
 (define handle404
