@@ -26,10 +26,14 @@
 
 (library (trabutium trabutium)
   (export
-    route-init
     get
     post
-    start-server
+    res
+    send
+    staticpath
+    ip
+    port
+    server-on
     host?
     user-agent?
     accept-language?
@@ -44,6 +48,10 @@
     (igropyr igropyr)
   )
 
+(define route-get (list '()))
+(define route-post (list '()))
+(define server-setup (list (cons 'init '()))) 
+ 
 
 (define ref*
     (lambda (str x)
@@ -59,9 +67,6 @@
             (if (null? y)
                 (ref* str x)
                 y))))
-
-
-(define route-init (list '()))
 
 
 (define push
@@ -169,9 +174,23 @@
         (lambda (request-header path-info payload)
             ((router route-post path-info) request-header path-info payload))))
 
-(define start-server
-    (lambda (x y)
-        (server handle-get handle-post x y))) 
+(define staticpath
+    (lambda (x)
+        (push server-setup 'staticpath x)))
+
+
+(define ip
+    (lambda (x)
+        (push server-setup 'ip x)))
+
+(define port
+    (lambda (x)
+        (push server-setup 'port x)))
+
+
+(define server-on
+    (lambda ()
+        (server handle-get handle-post server-setup server-setup))) 
  
 
 (define handle404
