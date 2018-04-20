@@ -21,7 +21,7 @@ https://github.com/guenchi/Ballista
 (post    "/notes"        notes)
 (get     "/blog/*/en"    blogEN)
 (get     "/articles/*"   article)
-(get     "/*"            handle404))
+(get     "/*"            handle404)
 ```
 
 ***easily to define respone***
