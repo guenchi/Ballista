@@ -68,7 +68,7 @@ https://github.com/guenchi/Ballista
 
 
 ```
-(http
+(start-server
     (set 
         ('staticpath "/usr/local/www/"))
     (listen 8080))
