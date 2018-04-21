@@ -74,6 +74,8 @@ then or just
 (server-on)
 ```
 
+***Manuel***: https://guenchi.gitbooks.io/igropyr/content/ballista.html
+
 ***Igropyr*** is a async http-server for Chez Scheme
 
 https://github.com/guenchi/Igropyr
