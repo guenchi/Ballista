@@ -15,9 +15,9 @@
 (get     "/articles/*"   article)
 (get     "/*"            handle404)
 ```
-or with any numbers of middleware:
+the route can with any numbers of middleware:
 ```
-(get     "/index"  middleware   index)
+(get     "/index"  middleware ...  index)
 ```
 the middleware have to accept three augements: header, path, query/payload.
 
