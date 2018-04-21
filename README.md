@@ -1,6 +1,6 @@
 # Ballista
 
-***Ballista*** is a ***Express style*** web framwork for ***Igropyr***
+***Ballista*** is a ***Express style*** webframwork for ***Igropyr***
 
 ***Igropyr*** : ***Ballista*** = ***Node*** : ***Express***
 
