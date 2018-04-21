@@ -30,7 +30,7 @@
     post
     res
     send
-    static-path
+    staticpath
     server-ip
     server-port
     server-on
@@ -174,7 +174,7 @@
         (lambda (header path payload)
             ((router route-post path) header path payload))))
 
-(define static-path
+(define staticpath
     (lambda (x)
         (push server-setup 'staticpath x)))
 
