@@ -86,14 +86,9 @@
                                     (if (and (v1 x y z))
                                         (f x y z)
                                         (handle403 x)))))
-                ((_ p v1 v2 f)#'(push route-get p 
+                ((_ p v1 v2 ... f)#'(push route-get p 
                                 (lambda (x y z)
-                                    (if (and (v1 x y z) (v2 x y z))
-                                        (f x y z)
-                                        (handle403 x)))))
-                ((_ p v1 v2 v3 ... f)#'(push route-get p 
-                                (lambda (x y z)
-                                    (if (and (v1 x y z) (v2 x y z) (v3 x y z) ...)
+                                    (if (and (v1 x y z) (v2 x y z) ...)
                                         (f x y z)
                                         (handle403 x))))))))
 
@@ -106,14 +101,9 @@
                                     (if (and (v1 x y z))
                                         (f x y z)
                                         (handle403 x)))))
-                ((_ p v1 v2 f)#'(push route-post p 
+                ((_ p v1 v2 ... f)#'(push route-post p 
                                 (lambda (x y z)
-                                    (if (and (v1 x y z) (v2 x y z))
-                                        (f x y z)
-                                        (handle403 x)))))
-                ((_ p v1 v2 v3 ... f)#'(push route-post p 
-                                (lambda (x y z)
-                                    (if (and (v1 x y z) (v2 x y z) (v3 x y z) ...)
+                                    (if (and (v1 x y z) (v2 x y z) ...)
                                         (f x y z)
                                         (handle403 x))))))))
 
