@@ -67,6 +67,7 @@ these set up is not prerequiste
 (staticpath "/usr/local/www/")
 (listen-on "127.0.0.1")
 (listen-on 8080)
+(listen-on "127.0.0.1" 8080)
 ```
 then or just
 ```
