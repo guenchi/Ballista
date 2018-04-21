@@ -1,6 +1,6 @@
-(("name" . "trabutium")
+(("name" . "ballista")
 ("version" . "0.1.0")
-("description" . "Trabutium is a web framwork for Igropyr")
+("description" . "Ballista is a web framwork for Igropyr")
 ("keywords"
     ("Scheme" "web" "framework" "Igropyr"))
 ("author" 
