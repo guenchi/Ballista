@@ -57,11 +57,15 @@
 ***use Trabutium***
 
 
+these set up is not prerequiste
 ```
-(start-server
-    (set 
-        ('staticpath "/usr/local/www/"))
-    (listen 8080))
+(staticpath "/users/iter/igropyr/www/")
+(ip "127.0.0.1")
+(port 8081)
+```
+then or just
+```
+(server-on)
 ```
 
 ***Igropyr*** is a async http-server for Chez Scheme
