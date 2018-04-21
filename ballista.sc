@@ -31,8 +31,7 @@
     res
     send
     staticpath
-    server-ip
-    server-port
+    listen-on
     server-on
     host?
     user-agent?
@@ -78,13 +77,45 @@
 			(push (cdr lst) x y))))
 
 
-(define get
-    (lambda (path function)
-        (push get-route path function)))
+    (define-syntax get
+        (lambda (x)
+            (syntax-case x ()
+                ((_ p f)#'(push route-get p f))
+                ((_ p v1 f)#'(push route-get p 
+                                (lambda (x y z)
+                                    (if (and (v1 x y z))
+                                        (f x y z)
+                                        (handle403 x)))))
+                ((_ p v1 v2 f)#'(push route-get p 
+                                (lambda (x y z)
+                                    (if (and (v1 x y z) (v2 x y z))
+                                        (f x y z)
+                                        (handle403 x)))))
+                ((_ p v1 v2 v3 ... f)#'(push route-get p 
+                                (lambda (x y z)
+                                    (if (and (v1 x y z) (v2 x y z) (v3 x y z) ...)
+                                        (f x y z)
+                                        (handle403 x))))))))
 
-(define post
-    (lambda (path function)
-        (push post-route path function)))
+    (define-syntax post
+        (lambda (x)
+            (syntax-case x ()
+                ((_ p f)#'(push route-post p f))
+                ((_ p v1 f)#'(push route-post p 
+                                (lambda (x y z)
+                                    (if (and (v1 x y z))
+                                        (f x y z)
+                                        (handle403 x)))))
+                ((_ p v1 v2 f)#'(push route-post p 
+                                (lambda (x y z)
+                                    (if (and (v1 x y z) (v2 x y z))
+                                        (f x y z)
+                                        (handle403 x)))))
+                ((_ p v1 v2 v3 ... f)#'(push route-post p 
+                                (lambda (x y z)
+                                    (if (and (v1 x y z) (v2 x y z) (v3 x y z) ...)
+                                        (f x y z)
+                                        (handle403 x))))))))
 
 
 
@@ -179,13 +210,15 @@
         (push server-setup 'staticpath x)))
 
 
-(define server-ip
-    (lambda (x)
-        (push server-setup 'ip x)))
-
-(define server-port
-    (lambda (x)
-        (push server-setup 'port x)))
+    (define-syntax listen-on
+        (lambda (x)
+            (syntax-case x ()
+                ((_ e) #'(cond 
+                    ((string? e) (push server-setup 'ip e))
+                    ((integer? e) (push server-setup 'port e))))
+                ((_ e1 e2) #'(begin
+                                (push server-setup 'ip e1)
+                                (push server-setup 'port e2))))))
 
 
 (define server-on
