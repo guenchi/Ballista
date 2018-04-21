@@ -5,9 +5,6 @@
 ***easily to write the router***
 
 ```
-(define get-route route-init)
-(define post-route route-init)
-
 (get     "/"             index)
 (get     "/index"        index)
 (post    "/users"        users)
