@@ -15,6 +15,12 @@
 (get     "/articles/*"   article)
 (get     "/*"            handle404)
 ```
+or with any numbers of middleware:
+```
+(get     "/index"  middleware   index)
+```
+the middleware have to accept three augements: header, path, query/payload.
+
 
 ***easily to define respone***
 
@@ -59,8 +65,8 @@
 these set up is not prerequiste
 ```
 (staticpath "/usr/local/www/")
-(server-ip "127.0.0.1")
-(server-port 8080)
+(listen-on "127.0.0.1")
+(listen-on 8080)
 ```
 then or just
 ```
