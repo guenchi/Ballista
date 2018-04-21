@@ -59,8 +59,8 @@
 these set up is not prerequiste
 ```
 (staticpath "/usr/local/www/")
-(ip "127.0.0.1")
-(port 8080)
+(server-ip "127.0.0.1")
+(server-port 8080)
 ```
 then or just
 ```
