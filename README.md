@@ -71,6 +71,6 @@ then or just
 
 https://github.com/guenchi/Igropyr
 
-her sister framwork: ***Trabutium*** (pure functional)
+Ballista's sister framwork: ***Trabutium*** (pure functional)
 
 https://github.com/guenchi/Trabutium
