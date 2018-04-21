@@ -1,8 +1,8 @@
-# Trabutium
+# Ballista
 
-***Trabutium*** is a ***Express style*** web framwork for ***Igropyr***
+***Ballista*** is a ***Express style*** web framwork for ***Igropyr***
 
-***Igropyr*** : ***Trabutium*** = ***Node*** : ***Express***
+***Igropyr*** : ***Ballista*** = ***Node*** : ***Express***
 
 ***easily to write the router***
 
@@ -47,13 +47,13 @@
 (res int string string)     => respone status, style and content
 ```
 
-***install Trabutium***
+***install***
 
-`$ raven install trabutium`
+`$ raven install ballista`
 
 
 
-***use Trabutium***
+***use***
 
 
 these set up is not prerequiste
@@ -71,6 +71,6 @@ then or just
 
 https://github.com/guenchi/Igropyr
 
-her sister framwork: ***Ballista*** (pure functional)
+her sister framwork: ***Trabutium*** (pure functional)
 
-https://github.com/guenchi/Ballista
+https://github.com/guenchi/Trabutium
