@@ -24,7 +24,7 @@
 
 
 
-(library (trabutium trabutium)
+(library (ballista ballista)
   (export
     get
     post
