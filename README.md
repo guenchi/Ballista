@@ -1,6 +1,8 @@
 # Trabutium
 
-***Trabutium*** is a web framwork for ***Igropyr***
+***Trabutium*** is a ***Express style*** web framwork for ***Igropyr***
+
+***Igropyr*** : ***Trabutium*** = ***Node*** : ***Express***
 
 ***easily to write the router***
 
@@ -68,8 +70,6 @@ then or just
 ***Igropyr*** is a async http-server for Chez Scheme
 
 https://github.com/guenchi/Igropyr
-
-***Igropyr*** : ***Trabutium*** = ***Node*** : ***Express***
 
 her sister framwork: ***Ballista*** (pure functional)
 
