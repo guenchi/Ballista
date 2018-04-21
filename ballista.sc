@@ -30,9 +30,9 @@
     post
     res
     send
-    staticpath
-    ip
-    port
+    static-path
+    server-ip
+    server-port
     server-on
     host?
     user-agent?
@@ -166,24 +166,24 @@
  
 (define handle-get
     (request
-        (lambda (request-header path-info query-string)
-            ((router route-get path-info) request-header path-info query-string))))
+        (lambda (header path query)
+            ((router route-get path) header path query))))
 
 (define handle-post
     (request
-        (lambda (request-header path-info payload)
-            ((router route-post path-info) request-header path-info payload))))
+        (lambda (header path payload)
+            ((router route-post path) header path payload))))
 
-(define staticpath
+(define static-path
     (lambda (x)
         (push server-setup 'staticpath x)))
 
 
-(define ip
+(define server-ip
     (lambda (x)
         (push server-setup 'ip x)))
 
-(define port
+(define server-port
     (lambda (x)
         (push server-setup 'port x)))
 
