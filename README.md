@@ -80,6 +80,6 @@ then or just
 
 https://github.com/guenchi/Igropyr
 
-Ballista's sister framwork: ***Trabutium*** (pure functional)
+Ballista's sister framwork: ***Catapult*** (pure functional)
 
-https://github.com/guenchi/Trabutium
+https://github.com/guenchi/Catapult
