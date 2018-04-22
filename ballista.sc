@@ -48,9 +48,9 @@
     (catapult catapult)
   )
 
-(define route-get (list '()))
-(define route-post (list '()))
-(define server-setup (list (cons 'init '()))) 
+    (define route-get (list))
+    (define route-post (list))
+    (define server-setup (list (cons 'init '()))) 
  
 
 
