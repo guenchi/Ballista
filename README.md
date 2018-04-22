@@ -4,7 +4,7 @@
 
 ***Igropyr*** : ***Ballista*** = ***Node*** : ***Express***
 
-***Ballista*** is repackaged on ***Catapult*** basis to make the application easier. But no longer purely functional.
+> ***Ballista*** is repackaged on ***Catapult*** basis to make the application easier. But no longer purely functional.
 
 ***easily to write the router***
 
