@@ -20,7 +20,15 @@
 
 ***easily to control the process***
 
-the route can have any numbers of middleware:
+any numbers of application layer middleware
+```
+(get-use middleware1)
+(get-use middleware2)
+(get-use middleware3)
+...
+```
+
+any numbers of router layer middleware:
 ```
 (get  "/index"  middleware ...  index)
 ```
