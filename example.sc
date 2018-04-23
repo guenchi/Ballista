@@ -8,12 +8,12 @@
         (res "this is index")))
 
 (define user
-    (lambda (header path payload)
-        (res 200 "text/html" payload)))
+    (lambda (x)
+        (res 200 "text/html" (caddr x))))
 
 (define page
-    (lambda (header path query)
-        (res (string-append header " Path:" path))))
+    (lambda (x)
+        (res (car x))))
 
 (define note
     (lambda x
@@ -25,25 +25,29 @@
 
 
 
-(define handle-header
-    (lambda (header path query break)
+(define pass
+    (lambda (x break)
         (lambda (f)
-            (f (cookie? header) path query break))))
+            (f x break))))
 
 
-(define handle-path
-    (lambda (header path query break)
+(define ok
+    (lambda (x break)
         (lambda (f)
-            (f header (path-parser path 0) query))))
+            (f x))))
 
 (define deline
     (lambda (header path query break)
         (break (errorpage 403))))
 
+(get-use pass)
+(get-use pass)
+(get-use ok)
+
 
 (get "/" index)
 (get "/index"   deline  index)
-(get "/user"  handle-header handle-path page)
+(get "/user"  pass pass pass ok page)
 (get "/*/note"  note)
 (get "/erro/*"  erro)
 (post "/user"   user)
