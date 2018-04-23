@@ -20,7 +20,7 @@
 
 ***easily to control the process***
 
-any numbers of application layer middleware
+application layer middleware:
 ```
 (get-use middleware1)
 (get-use middleware2)
@@ -28,7 +28,7 @@ any numbers of application layer middleware
 ...
 ```
 
-any numbers of router layer middleware:
+router layer middleware:
 ```
 (get  "/index"  middleware ...  index)
 ```
