@@ -19,7 +19,7 @@
 ```
 the route can with any numbers of middleware:
 ```
-(get     "/index"  middleware ...  index)
+(get  "/index"  middleware ...  index)
 ```
 
 
