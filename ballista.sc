@@ -30,6 +30,8 @@
     post
     res
     send
+    get-use
+    post-use
     staticpath
     listen-on
     server-on
@@ -50,6 +52,8 @@
 
     (define route-get (list '()))
     (define route-post (list '()))
+    (define use-get (list '()))
+    (define use-post (list '()))
     (define server-setup (list (cons 'init '()))) 
  
 
@@ -61,6 +65,56 @@
 				(set-car! lst (cons x y))
 				(set-cdr! lst (cons (cons x y) '())))
 			(push (cdr lst) x y))))
+ 
+ 
+    (define push-array
+        (lambda (lst x)
+            (if (null? (cdr lst))
+                (if (null? (car lst))
+                    (set-car! lst x)
+                    (set-cdr! lst (cons x '())))
+                (push-array (cdr lst) x))))
+ 
+ 
+ 
+     (define get-use
+        (lambda (x)
+            (push-array use-get x)))
+
+    
+    (define post-use
+        (lambda (x)
+            (push-array use-post x)))        
+
+
+    (define get-pass
+        (lambda x
+                (if (null? (car use-get))
+                    (lambda (f)
+                        (f x))
+                    (call/cc
+                        (lambda (break)
+                            (let l ((p ((car use-get) x break))(lst (cdr use-get)))
+                                (if (null? lst)
+                                    p
+                                    (if (null? (cdr lst))
+                                        (p (car lst))
+                                        (l (p (car lst)) (cdr lst))))))))))
+
+
+    (define post-pass
+        (lambda x
+                (if (null? (car use-post))
+                    (lambda (f)
+                        (f x))
+                    (call/cc
+                        (lambda (break)
+                            (let l ((p ((car use-post) x break))(lst (cdr use-post)))
+                                (if (null? lst)
+                                    p
+                                    (if (null? (cdr lst))
+                                        (p (car lst))
+                                        (l (p (car lst)) (cdr lst))))))))))
 
 
     (define-syntax iterator
@@ -76,10 +130,10 @@
             (syntax-case x ()
                 ((_ p f1) #'(push route-get p f1))
                 ((_ p f1 f2 ...) #'(push route-get p 
-                                    (lambda (x y z)
+                                    (lambda (x)
                                         (call/cc 
                                             (lambda (break)
-                                                (iterator (f1 x y z break) f2 ...)))))))))        
+                                                (iterator (f1 x break) f2 ...)))))))))        
 
 
     (define-syntax post
@@ -87,23 +141,24 @@
             (syntax-case x ()
                 ((_ p f1) #'(push route-post p f1))
                 ((_ p f1 f2 ...) #'(push route-post p 
-                                    (lambda (x y z)
+                                    (lambda (x)
                                         (call/cc 
                                             (lambda (break)
-                                                (iterator (f1 x y z break) f2 ...)))))))))
+                                                (iterator (f1 x break) f2 ...)))))))))  
 
 
- 
+
     (define handle-get
         (request
             (lambda (header path query)
-                ((router route-get path) header path query))))
- 
+                ((get-pass header path query)
+                    (router route-get path)))))
 
     (define handle-post
         (request
             (lambda (header path payload)
-                ((router route-post path) header path payload))))
+                ((post-pass header path payload)
+                    (router route-post path)))))
  
 
     (define staticpath
@@ -126,14 +181,6 @@
         (lambda ()
             (server handle-get handle-post server-setup server-setup))) 
  
-
-    (define handle403
-        (lambda x
-            (errorpage 403 "<center><h5>Powered by Ballista</h5></center>")))
-
-    (define handle404
-        (lambda x
-            (errorpage 404 "<center><h5>Powered by Ballista</h5></center>")))
  
  
 
