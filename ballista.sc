@@ -63,35 +63,34 @@
 			(push (cdr lst) x y))))
 
 
+    (define-syntax iterator
+        (lambda (x)
+            (syntax-case x ()
+                ((_ f1 f2) #'(f1 f2))
+                ((_ f1 f2 f3 ...) #'(iterator (f1 f2) f3 ...)))))
+
+
+
     (define-syntax get
         (lambda (x)
             (syntax-case x ()
-                ((_ p f)#'(push route-get p f))
-                ((_ p v1 f)#'(push route-get p 
-                                (lambda (x y z)
-                                    (if (and (v1 x y z))
-                                        (f x y z)
-                                        (handle403 x)))))
-                ((_ p v1 v2 ... f)#'(push route-get p 
-                                (lambda (x y z)
-                                    (if (and (v1 x y z) (v2 x y z) ...)
-                                        (f x y z)
-                                        (handle403 x))))))))
+                ((_ p f1) #'(push route-get p f1))
+                ((_ p f1 f2 ...) #'(push route-get p 
+                                    (lambda (x y z)
+                                        (call/cc 
+                                            (lambda (break)
+                                                (iterator (f1 x y z break) f2 ...)))))))))        
+
 
     (define-syntax post
         (lambda (x)
             (syntax-case x ()
-                ((_ p f)#'(push route-post p f))
-                ((_ p v1 f)#'(push route-post p 
-                                (lambda (x y z)
-                                    (if (and (v1 x y z))
-                                        (f x y z)
-                                        (handle403 x)))))
-                ((_ p v1 v2 ... f)#'(push route-post p 
-                                (lambda (x y z)
-                                    (if (and (v1 x y z) (v2 x y z) ...)
-                                        (f x y z)
-                                        (handle403 x))))))))
+                ((_ p f1) #'(push route-post p f1))
+                ((_ p f1 f2 ...) #'(push route-post p 
+                                    (lambda (x y z)
+                                        (call/cc 
+                                            (lambda (break)
+                                                (iterator (f1 x y z break) f2 ...)))))))))
 
 
  
