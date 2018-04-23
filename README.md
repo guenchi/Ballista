@@ -17,7 +17,9 @@
 (get     "/articles/*"   article)
 (get     "/*"            handle404)
 ```
-the route can with any numbers of middleware:
+
+***easily to control the process***
+the route can have any numbers of middleware:
 ```
 (get  "/index"  middleware ...  index)
 ```
