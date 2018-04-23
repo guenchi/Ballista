@@ -21,7 +21,6 @@ the route can with any numbers of middleware:
 ```
 (get     "/index"  middleware ...  index)
 ```
-the middleware have to accept three augements: header, path, query/payload and return boolean.
 
 
 ***easily to set up the server***
