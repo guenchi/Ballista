@@ -1,4 +1,5 @@
-(import  (ballista ballista))
+(import (igropyr http) 
+        (ballista ballista))
 
 (printf "server is start, listen on port..~a\n" 8080)
 
@@ -12,7 +13,7 @@
 
 (define page
     (lambda (header path query)
-        (res 200 query)))
+        (res (string-append header " Path:" path))))
 
 (define note
     (lambda x
@@ -24,18 +25,25 @@
 
 
 
-(define pass
-    (lambda x
-        #t))
+(define handle-header
+    (lambda (header path query break)
+        (lambda (f)
+            (f (cookie? header) path query break))))
+
+
+(define handle-path
+    (lambda (header path query break)
+        (lambda (f)
+            (f header (path-parser path 0) query))))
 
 (define deline
-    (lambda x
-        #f))
+    (lambda (header path query break)
+        (break (errorpage 403))))
 
 
 (get "/" index)
 (get "/index"   deline  index)
-(get "/page"    pass    page)
+(get "/user"  handle-header handle-path page)
 (get "/*/note"  note)
 (get "/erro/*"  erro)
 (post "/user"   user)
