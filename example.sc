@@ -8,11 +8,11 @@
         (res "this is index")))
 
 (define user
-    (lambda (x)
+    (lambda (x y)
         (res 200 "text/html" (caddr x))))
 
 (define page
-    (lambda (x)
+    (lambda (x y)
         (res (car x))))
 
 (define note
@@ -26,16 +26,17 @@
 
 
 (define pass
-    (lambda (x break)
+    (lambda (x return)
         (lambda (f)
-            (f x break))))
+            (f x return))))
 
 
 
 (define deline
-    (lambda (header path query break)
-        (break (errorpage 403))))
+    (lambda (x return)
+        (return (errorpage 403))))
 
+(get-use pass)
 (get-use pass)
 (get-use pass)
 
