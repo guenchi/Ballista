@@ -31,10 +31,6 @@
             (f x break))))
 
 
-(define ok
-    (lambda (x break)
-        (lambda (f)
-            (f x))))
 
 (define deline
     (lambda (header path query break)
@@ -42,12 +38,11 @@
 
 (get-use pass)
 (get-use pass)
-(get-use ok)
 
 
 (get "/" index)
 (get "/index"   deline  index)
-(get "/user"  pass pass pass ok page)
+(get "/user"  pass pass pass pass page)
 (get "/*/note"  note)
 (get "/erro/*"  erro)
 (post "/user"   user)
