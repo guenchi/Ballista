@@ -90,11 +90,13 @@
     (define get-pass
         (lambda x
                 (if (null? (car use-get))
-                    (lambda (f)
-                        (f x))
                     (call/cc
-                        (lambda (break)
-                            (let l ((p ((car use-get) x break))(lst (cdr use-get)))
+                        (lambda (return)
+                            (lambda (f)
+                                (f x return))))
+                    (call/cc
+                        (lambda (return)
+                            (let l ((p ((car use-get) x return))(lst (cdr use-get)))
                                 (if (null? lst)
                                     p
                                     (if (null? (cdr lst))
@@ -105,11 +107,13 @@
     (define post-pass
         (lambda x
                 (if (null? (car use-post))
-                    (lambda (f)
-                        (f x))
                     (call/cc
-                        (lambda (break)
-                            (let l ((p ((car use-post) x break))(lst (cdr use-post)))
+                        (lambda (return)
+                            (lambda (f)
+                                (f x return))))
+                    (call/cc
+                        (lambda (return)
+                            (let l ((p ((car use-post) x return))(lst (cdr use-post)))
                                 (if (null? lst)
                                     p
                                     (if (null? (cdr lst))
@@ -130,10 +134,10 @@
             (syntax-case x ()
                 ((_ p f1) #'(push route-get p f1))
                 ((_ p f1 f2 ...) #'(push route-get p 
-                                    (lambda (x)
+                                    (lambda (x break)
                                         (call/cc 
-                                            (lambda (break)
-                                                (iterator (f1 x break) f2 ...)))))))))        
+                                            (lambda (return)
+                                                (iterator (f1 x return) f2 ...)))))))))        
 
 
     (define-syntax post
@@ -141,10 +145,10 @@
             (syntax-case x ()
                 ((_ p f1) #'(push route-post p f1))
                 ((_ p f1 f2 ...) #'(push route-post p 
-                                    (lambda (x)
+                                    (lambda (x break)
                                         (call/cc 
-                                            (lambda (break)
-                                                (iterator (f1 x break) f2 ...)))))))))  
+                                            (lambda (return)
+                                                (iterator (f1 x return) f2 ...))))))))) 
 
 
 
