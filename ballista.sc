@@ -30,6 +30,7 @@
     post
     res
     send
+    next
     get-use
     post-use
     staticpath
@@ -85,6 +86,12 @@
     (define post-use
         (lambda (x)
             (push-array use-post x)))        
+ 
+ 
+    (define next
+        (lambda (x break)
+            (lambda (f)
+                (f x break))))
 
 
     (define get-pass
