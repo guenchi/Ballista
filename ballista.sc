@@ -88,10 +88,12 @@
             (push-array use-post x)))        
  
  
-    (define next
-        (lambda (x return)
-            (lambda (f)
-                (f x return))))
+    (define-syntax next
+        (lambda (x)
+            (syntax-case x ()
+                ((_ e1) #'(lambda (f) (f e1)))
+                ((_ e1 e2) #'(lambda (f) (f e1 e2)))
+                ((_ e1 e2 e3 ...) #'(lambda (f) (f e1 e2 e3 ...))))))
 
 
     (define get-pass
