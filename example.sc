@@ -27,8 +27,7 @@
 
 (define pass
     (lambda (x return)
-        (lambda (f)
-            (f x return))))
+        (next x return)))
 
 
 
