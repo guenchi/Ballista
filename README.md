@@ -11,11 +11,11 @@
 ```
 (get     "/"             index)
 (get     "/index"        index)
-(post    "/users"        users)
-(post    "/notes"        notes)
 (get     "/blog/*/en"    blogEN)
 (get     "/articles/*"   article)
 (get     "/*"            handle404)
+(post    "/users"        users)
+(post    "/notes"        notes)
 ```
 
 ***easily to control the process***
