@@ -20,7 +20,7 @@
 
 ***easily to control the process***
 
-application layer middleware:
+application-level middleware:
 ```
 (get-use middleware1)
 (get-use middleware2)
@@ -28,7 +28,7 @@ application layer middleware:
 ...
 ```
 
-router layer middleware:
+router-level middleware:
 ```
 (get  "/index"  middleware ...  index)
 ```
