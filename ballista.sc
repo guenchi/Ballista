@@ -91,9 +91,9 @@
     (define-syntax next
         (lambda (x)
             (syntax-case x ()
-                ((_ e1) #'(lambda (f) (f e1)))
-                ((_ e1 e2) #'(lambda (f) (f e1 e2)))
-                ((_ e1 e2 e3 ...) #'(lambda (f) (f e1 e2 e3 ...))))))
+                ((_ e1) (syntax (lambda (f) (f e1))))
+                ((_ e1 e2) (syntax (lambda (f) (f e1 e2))))
+                ((_ e1 e2 e3 ...) (syntax (lambda (f) (f e1 e2 e3 ...)))))))
 
 
     (define get-pass
@@ -133,31 +133,35 @@
     (define-syntax iterator
         (lambda (x)
             (syntax-case x ()
-                ((_ f1 f2) #'(f1 f2))
-                ((_ f1 f2 f3 ...) #'(iterator (f1 f2) f3 ...)))))
+                ((_ f1 f2) (syntax (f1 f2)))
+                ((_ f1 f2 f3 ...) (syntax (iterator (f1 f2) f3 ...))))))
+
+
 
 
 
     (define-syntax get
         (lambda (x)
             (syntax-case x ()
-                ((_ p f1) #'(push route-get p f1))
-                ((_ p f1 f2 ...) #'(push route-get p 
-                                    (lambda (x break)
-                                        (call/cc 
-                                            (lambda (return)
-                                                (iterator (f1 x return) f2 ...)))))))))        
+                ((_ p f1) (syntax (push route-get p f1)))
+                ((_ p f1 f2 ...) (syntax 
+                                    (push route-get p 
+                                        (lambda (x break)
+                                            (call/cc 
+                                                (lambda (return)
+                                                    (iterator (f1 x return) f2 ...))))))))))     
 
 
     (define-syntax post
         (lambda (x)
             (syntax-case x ()
-                ((_ p f1) #'(push route-post p f1))
-                ((_ p f1 f2 ...) #'(push route-post p 
-                                    (lambda (x break)
-                                        (call/cc 
-                                            (lambda (return)
-                                                (iterator (f1 x return) f2 ...))))))))) 
+                ((_ p f1) (syntax (push route-post p f1)))
+                ((_ p f1 f2 ...) (syntax 
+                                    (push route-post p 
+                                        (lambda (x break)
+                                            (call/cc 
+                                                (lambda (return)
+                                                    (iterator (f1 x return) f2 ...)))))))))) 
 
 
 
@@ -178,16 +182,19 @@
         (lambda (x)
             (push server-setup 'staticpath x)))
 
+ 
 
     (define-syntax listen-on
         (lambda (x)
             (syntax-case x ()
-                ((_ e) #'(cond 
-                    ((string? e) (push server-setup 'ip e))
-                    ((integer? e) (push server-setup 'port e))))
-                ((_ e1 e2) #'(begin
-                                (push server-setup 'ip e1)
-                                (push server-setup 'port e2))))))
+                ((_ e) (syntax 
+                            (cond 
+                                ((string? e) (push server-setup 'ip e))
+                                ((integer? e) (push server-setup 'port e)))))
+                ((_ e1 e2) (syntax 
+                                (begin
+                                    (push server-setup 'ip e1)
+                                    (push server-setup 'port e2)))))))
 
 
     (define server-on
