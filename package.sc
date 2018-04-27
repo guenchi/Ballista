@@ -9,5 +9,5 @@
 ("scripts")
 ("dependencies"
     ("igropyr" . "0.2.11")
-    ("catapult" . "0.2.5"))
+    ("catapult" . "0.2.6"))
 ("devDependencies"))
