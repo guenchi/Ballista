@@ -35,17 +35,25 @@
     (lambda (x return)
         (return (errorpage 403))))
 
+
+(define verify
+    (lambda (x return)
+        (if (equal? (caddr x) "ok")
+            (next x return)
+            (return (errorpage 403)))))
+
+
 (get-use pass)
 (get-use pass)
 (get-use pass)
 
 
 (get "/" index)
-(get "/index"   deline  index)
-(get "/user"  pass pass pass pass page)
+(get "/index"   verify deline  index)
+(get "/user"  pass pass verify pass user)
 (get "/*/note"  note)
 (get "/erro/*"  erro)
-(post "/user"   user)
+(post "/page"   page)
 
 (staticpath "/users/local/www/")
 (listen-on 8080)
