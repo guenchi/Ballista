@@ -40,7 +40,7 @@
     (lambda (x return)
         (if (equal? (caddr x) "ok")
             (next x return)
-            (return (errorpage 403)))))
+            (return (errorpage 403 (cadr x))))))
 
 
 (get-use pass)
