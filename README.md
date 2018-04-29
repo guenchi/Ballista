@@ -65,6 +65,6 @@ just
 
 https://github.com/guenchi/Igropyr
 
-Ballista's sister framwork: ***Catapult*** (purely functional)
+Ballista's sister framwork and its dependence: ***Catapult*** (purely functional)
 
 https://github.com/guenchi/Catapult
