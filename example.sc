@@ -33,14 +33,14 @@
 
 (define deline
     (lambda (x return)
-        (return (errorpage 403))))
+        (return handle403)))
 
 
 (define verify
     (lambda (x return)
         (if (equal? (caddr x) "ok")
             (next x return)
-            (return (errorpage 403 (cadr x))))))
+            (return (lambda k (errorpage 403 (cadr x)))))))
 
 
 (get-use pass)
