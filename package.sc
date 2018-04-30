@@ -1,5 +1,5 @@
 (("name" . "ballista")
-("version" . "0.5.3")
+("version" . "0.5.5")
 ("description" . "Ballista is a Express style web framwork for Igropyr")
 ("keywords"
     ("Scheme" "web" "framework" "Igropyr"))
