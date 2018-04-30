@@ -33,6 +33,7 @@
     next
     get-use
     post-use
+    handle403
     staticpath
     listen-on
     server-on
@@ -146,10 +147,8 @@
                 ((_ p f1) (syntax (push route-get p f1)))
                 ((_ p f1 f2 ...) (syntax 
                                     (push route-get p 
-                                        (lambda (x break)
-                                            (call/cc 
-                                                (lambda (return)
-                                                    (iterator (f1 x return) f2 ...))))))))))     
+                                        (lambda (x return)
+                                            (iterator (f1 x return) f2 ...))))))))     
 
 
     (define-syntax post
@@ -158,10 +157,8 @@
                 ((_ p f1) (syntax (push route-post p f1)))
                 ((_ p f1 f2 ...) (syntax 
                                     (push route-post p 
-                                        (lambda (x break)
-                                            (call/cc 
-                                                (lambda (return)
-                                                    (iterator (f1 x return) f2 ...)))))))))) 
+                                        (lambda (x return)
+                                            (iterator (f1 x return) f2 ...)))))))) 
 
 
 
@@ -176,6 +173,13 @@
             (lambda (header path payload)
                 ((post-pass header path payload)
                     (router route-post path)))))
+ 
+ 
+ 
+     (define handle403
+        (lambda x
+            (errorpage 403 "<center><h5>Powered by Ballista</h5></center>")))
+ 
  
 
     (define staticpath
