@@ -61,12 +61,12 @@
 
 
     (define push
-	(lambda (lst x y)
-		(if (null? (cdr lst))
-			(if (null? (car lst))
-				(set-car! lst (cons x y))
-				(set-cdr! lst (cons (cons x y) '())))
-			(push (cdr lst) x y))))
+        (lambda (lst x y)
+	    (if (null? (cdr lst))
+	        (if (null? (car lst))
+		    (set-car! lst (cons x y))
+		    (set-cdr! lst (cons (cons x y) '())))
+		(push (cdr lst) x y))))
  
  
     (define push-array
@@ -79,7 +79,7 @@
  
  
  
-     (define get-use
+    (define get-use
         (lambda (x)
             (push-array use-get x)))
 
