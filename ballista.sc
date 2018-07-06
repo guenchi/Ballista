@@ -90,11 +90,8 @@
  
  
     (define-syntax next
-        (lambda (x)
-            (syntax-case x ()
-                ((_ e1) (syntax (lambda (f) (f e1))))
-                ((_ e1 e2) (syntax (lambda (f) (f e1 e2))))
-                ((_ e1 e2 e3 ...) (syntax (lambda (f) (f e1 e2 e3 ...)))))))
+        (syntax-rules ()
+            ((_ e ...) (lambda (f) (f e ...)))))
 
 
     (define get-pass
