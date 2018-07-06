@@ -144,13 +144,11 @@
 
 
     (define-syntax post
-        (lambda (x)
-            (syntax-case x ()
-                ((_ p f1) (syntax (push route-post p f1)))
-                ((_ p f1 f2 ...) (syntax 
-                                    (push route-post p 
-                                        (lambda (x return)
-                                            (iterator (f1 x return) f2 ...)))))))) 
+        (syntax-rules ()
+            ((_ p f1) (push route-post p f1))
+            ((_ p f1 f2 ...) (push route-post p 
+                                (lambda (x return)
+                                    (iterator (f1 x return) f2 ...)))))) 
 
 
 
