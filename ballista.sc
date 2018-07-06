@@ -179,16 +179,13 @@
  
 
     (define-syntax listen-on
-        (lambda (x)
-            (syntax-case x ()
-                ((_ e) (syntax 
-                            (cond 
-                                ((string? e) (push server-setup 'ip e))
-                                ((integer? e) (push server-setup 'port e)))))
-                ((_ e1 e2) (syntax 
-                                (begin
-                                    (push server-setup 'ip e1)
-                                    (push server-setup 'port e2)))))))
+        (syntax-rules ()
+            ((_ e) (cond 
+                        ((string? e) (push server-setup 'ip e))
+                        ((integer? e) (push server-setup 'port e))))
+            ((_ e1 e2) (begin
+                            (push server-setup 'ip e1)
+                            (push server-setup 'port e2)))))
 
 
     (define server-on
