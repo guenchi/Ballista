@@ -136,13 +136,11 @@
 
 
     (define-syntax get
-        (lambda (x)
-            (syntax-case x ()
-                ((_ p f1) (syntax (push route-get p f1)))
-                ((_ p f1 f2 ...) (syntax 
-                                    (push route-get p 
-                                        (lambda (x return)
-                                            (iterator (f1 x return) f2 ...))))))))     
+        (syntax-rules ()
+            ((_ p f1) (push route-get p f1))
+            ((_ p f1 f2 ...) (push route-get p 
+                                (lambda (x return)
+                                    (iterator (f1 x return) f2 ...))))))        
 
 
     (define-syntax post
