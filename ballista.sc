@@ -129,12 +129,9 @@
 
 
     (define-syntax iterator
-        (lambda (x)
-            (syntax-case x ()
-                ((_ f1 f2) (syntax (f1 f2)))
-                ((_ f1 f2 f3 ...) (syntax (iterator (f1 f2) f3 ...))))))
-
-
+        (syntax-rules ()
+            ((_ f1 f2) (f1 f2))
+            ((_ f1 f2 f3 ...) (iterator (f1 f2) f3 ...))))
 
 
 
