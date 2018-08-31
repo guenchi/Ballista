@@ -48,8 +48,8 @@
   (import
     (scheme)
     (igropyr http)
-    (igropyr igropyr)
     (catapult catapult)
+    (only (core alist) push!)
   )
 
     (define route-get (list '()))
@@ -60,33 +60,24 @@
  
 
 
-    (define push
-        (lambda (lst x y)
-	    (if (null? (cdr lst))
-	        (if (null? (car lst))
-		    (set-car! lst (cons x y))
-		    (set-cdr! lst (cons (cons x y) '())))
-		(push (cdr lst) x y))))
- 
- 
-    (define push-array
+    (define push*!
         (lambda (lst x)
             (if (null? (cdr lst))
                 (if (null? (car lst))
                     (set-car! lst x)
                     (set-cdr! lst (cons x '())))
-                (push-array (cdr lst) x))))
+                (push*! (cdr lst) x))))
  
  
  
     (define get-use
         (lambda (x)
-            (push-array use-get x)))
+            (push*! use-get x)))
 
     
     (define post-use
         (lambda (x)
-            (push-array use-post x)))        
+            (push*! use-post x)))    
  
  
     (define-syntax next
@@ -137,18 +128,18 @@
 
     (define-syntax get
         (syntax-rules ()
-            ((_ p f1) (push route-get p f1))
-            ((_ p f1 f2 ...) (push route-get p 
+            ((_ p f1) (push! route-get p f1))
+            ((_ p f1 f2 ...) (push! route-get p 
                                 (lambda (x return)
-                                    (iterator (f1 x return) f2 ...))))))        
+                                    (iterator (f1 x return) f2 ...))))))    
 
 
     (define-syntax post
         (syntax-rules ()
-            ((_ p f1) (push route-post p f1))
-            ((_ p f1 f2 ...) (push route-post p 
+            ((_ p f1) (push! route-post p f1))
+            ((_ p f1 f2 ...) (push! route-post p 
                                 (lambda (x return)
-                                    (iterator (f1 x return) f2 ...)))))) 
+                                    (iterator (f1 x return) f2 ...))))))  
 
 
 
@@ -174,18 +165,18 @@
 
     (define staticpath
         (lambda (x)
-            (push server-setup 'staticpath x)))
+            (push! server-setup 'staticpath x)))
 
- 
+            
 
     (define-syntax listen-on
         (syntax-rules ()
             ((_ e) (cond 
-                        ((string? e) (push server-setup 'ip e))
-                        ((integer? e) (push server-setup 'port e))))
+                        ((string? e) (push! server-setup 'ip e))
+                        ((integer? e) (push! server-setup 'port e))))
             ((_ e1 e2) (begin
-                            (push server-setup 'ip e1)
-                            (push server-setup 'port e2)))))
+                            (push! server-setup 'ip e1)
+                            (push! server-setup 'port e2)))))
 
 
     (define server-on
