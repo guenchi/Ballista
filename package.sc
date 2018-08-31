@@ -1,5 +1,5 @@
 (("name" . "ballista")
-("version" . "0.5.6")
+("version" . "0.5.8")
 ("description" . "Ballista is a Express style web framwork for Igropyr")
 ("keywords"
     ("Scheme" "web" "framework" "Igropyr"))
@@ -9,5 +9,6 @@
 ("scripts")
 ("dependencies"
     ("igropyr" . "0.2.13")
-    ("catapult" . "0.2.8"))
+    ("catapult" . "0.2.8")
+    ("core" . "1.1.0"))
 ("devDependencies"))
