@@ -60,24 +60,24 @@
  
 
 
-    (define push*!
+    (define push-list!
         (lambda (lst x)
             (if (null? (cdr lst))
                 (if (null? (car lst))
                     (set-car! lst x)
                     (set-cdr! lst (cons x '())))
-                (push*! (cdr lst) x))))
- 
- 
- 
+                (push-list! (cdr lst) x))))
+
+
+
     (define get-use
         (lambda (x)
-            (push*! use-get x)))
+            (push-list! use-get x)))
 
     
     (define post-use
         (lambda (x)
-            (push*! use-post x)))    
+            (push-list! use-post x))) 
  
  
     (define-syntax next
