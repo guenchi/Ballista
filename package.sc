@@ -10,5 +10,5 @@
 ("dependencies"
     ("igropyr" . "0.2.13")
     ("catapult" . "0.2.8")
-    ("core" . "1.1.0"))
+    ("core" . "1.2.0"))
 ("devDependencies"))
