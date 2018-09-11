@@ -57,14 +57,12 @@ just
 (server-on)
 ```
 
-***Manuel***: https://guenchi.gitbooks.io/igropyr/content/ballista.html
+***[Manuel](https://guenchi.gitbooks.io/igropyr/content/ballista.html)***
 
-***Raven***: Chez Scheme Package Manager http://ravensc.com
+***[Raven](http://ravensc.com)*** : Chez Scheme Package Manager 
 
-***Igropyr*** is a async http-server for Chez Scheme
+***[Igropyr](https://github.com/guenchi/Igropyr)*** is a async http-server for Chez Scheme
 
-https://github.com/guenchi/Igropyr
+Ballista's sister framwork and its dependence: ***[Catapult](https://github.com/guenchi/Catapult)*** (purely functional)
 
-Ballista's sister framwork and its dependence: ***Catapult*** (purely functional)
 
-https://github.com/guenchi/Catapult
