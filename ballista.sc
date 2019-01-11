@@ -46,7 +46,7 @@
     query-parser
   )
   (import
-    (scheme)
+    (chezscheme)
     (igropyr http)
     (catapult catapult)
     (only (core alist) push!)
