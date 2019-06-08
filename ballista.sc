@@ -63,10 +63,10 @@
   (define push-list!
     (lambda (lst x)
       (if (null? (cdr lst))
-        (if (null? (car lst))
-          (set-car! lst x)
-          (set-cdr! lst (cons x '())))
-        (push-list! (cdr lst) x))))
+          (if (null? (car lst))
+              (set-car! lst x)
+              (set-cdr! lst (cons x '())))
+          (push-list! (cdr lst) x))))
 
 
 
@@ -87,7 +87,7 @@
 
   (define get-pass
     (lambda x
-        (if (null? (car use-get))
+      (if (null? (car use-get))
           (call/cc
             (lambda (return)
               (lambda (f)
@@ -95,28 +95,28 @@
           (call/cc
             (lambda (return)
               (let l ((p ((car use-get) x return))(lst (cdr use-get)))
-                (if (null? lst)
-                  p
-                  (if (null? (cdr lst))
-                    (p (car lst))
-                    (l (p (car lst)) (cdr lst))))))))))
+                     (if (null? lst)
+                         p
+                         (if (null? (cdr lst))
+                             (p (car lst))
+                             (l (p (car lst)) (cdr lst))))))))))
 
 
   (define post-pass
     (lambda x
         (if (null? (car use-post))
-          (call/cc
-            (lambda (return)
-              (lambda (f)
-                (f x return))))
-          (call/cc
-            (lambda (return)
-              (let l ((p ((car use-post) x return))(lst (cdr use-post)))
-                (if (null? lst)
-                  p
-                  (if (null? (cdr lst))
-                    (p (car lst))
-                    (l (p (car lst)) (cdr lst))))))))))
+            (call/cc
+              (lambda (return)
+                (lambda (f)
+                  (f x return))))
+            (call/cc
+              (lambda (return)
+                (let l ((p ((car use-post) x return))(lst (cdr use-post)))
+                       (if (null? lst)
+                           p
+                           (if (null? (cdr lst))
+                               (p (car lst))
+                               (l (p (car lst)) (cdr lst))))))))))
 
 
   (define-syntax iterator
