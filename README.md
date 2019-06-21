@@ -57,7 +57,7 @@ just
 (server-on)
 ```
 
-***[Manuel](https://guenchi.gitbooks.io/igropyr/content/ballista.html)***
+***[Manual](https://guenchi.gitbooks.io/igropyr/content/ballista.html)***
 
 ***[Raven](http://ravensc.com)*** : Chez Scheme Package Manager 
 
