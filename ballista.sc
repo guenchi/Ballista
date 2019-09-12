@@ -52,11 +52,11 @@
     (only (core alist) push!)
   )
 
-  (define route-get (list '()))
-  (define route-post (list '()))
-  (define use-get (list '()))
-  (define use-post (list '()))
-  (define server-setup (list (cons 'init '()))) 
+  (define *get* (list '()))
+  (define *post* (list '()))
+  (define *get-use* (list '()))
+  (define *post-use* (list '()))
+  (define *server-setup* (list (cons 'init '()))) 
  
 
 
@@ -72,12 +72,12 @@
 
   (define get-use
     (lambda (x)
-      (push-list! use-get x)))
+      (push-list! *get-use* x)))
 
   
   (define post-use
     (lambda (x)
-      (push-list! use-post x))) 
+      (push-list! *post-use* x))) 
  
  
   (define-syntax next
@@ -85,38 +85,27 @@
       ((_ e ...) (lambda (f) (f e ...)))))
 
 
-  (define get-pass
-    (lambda x
-      (if (null? (car use-get))
-          (call/cc
-            (lambda (return)
-              (lambda (f)
-                (f x return))))
-          (call/cc
-            (lambda (return)
-              (let l ((p ((car use-get) x return))(lst (cdr use-get)))
-                     (if (null? lst)
-                         p
-                         (if (null? (cdr lst))
-                             (p (car lst))
-                             (l (p (car lst)) (cdr lst))))))))))
-
-
-  (define post-pass
-    (lambda x
-        (if (null? (car use-post))
+  (define pass
+    (lambda (m)
+      (lambda x
+        (if (null? (car m))
             (call/cc
               (lambda (return)
                 (lambda (f)
                   (f x return))))
             (call/cc
               (lambda (return)
-                (let l ((p ((car use-post) x return))(lst (cdr use-post)))
-                       (if (null? lst)
-                           p
-                           (if (null? (cdr lst))
-                               (p (car lst))
-                               (l (p (car lst)) (cdr lst))))))))))
+                (let l ((p ((car m) x return))(lst (cdr m)))
+                  (if (null? lst)
+                      p
+                      (if (null? (cdr lst))
+                          (p (car lst))
+                          (l (p (car lst)) (cdr lst)))))))))))
+
+
+  (define get-pass (pass *get-use*))
+
+  (define post-pass (pass *post-use*))
 
 
   (define-syntax iterator
@@ -128,16 +117,16 @@
 
   (define-syntax get
     (syntax-rules ()
-      ((_ p f1) (push! route-get p f1))
-      ((_ p f1 f2 ...) (push! route-get p 
+      ((_ p f1) (push! *get* p f1))
+      ((_ p f1 f2 ...) (push! *get* p 
                 (lambda (x return)
                   (iterator (f1 x return) f2 ...))))))  
 
 
   (define-syntax post
     (syntax-rules ()
-      ((_ p f1) (push! route-post p f1))
-      ((_ p f1 f2 ...) (push! route-post p 
+      ((_ p f1) (push! *post* p f1))
+      ((_ p f1 f2 ...) (push! *post* p 
                 (lambda (x return)
                   (iterator (f1 x return) f2 ...))))))  
 
@@ -147,13 +136,13 @@
     (request
       (lambda (header path query)
         ((get-pass header path query)
-          (router route-get path)))))
+          (router *get* path)))))
 
   (define handle-post
     (request
       (lambda (header path payload)
         ((post-pass header path payload)
-          (router route-post path)))))
+          (router *post* path)))))
  
  
  
@@ -165,23 +154,23 @@
 
   (define staticpath
     (lambda (x)
-      (push! server-setup 'staticpath x)))
+      (push! *server-setup* 'staticpath x)))
 
       
 
   (define-syntax listen-on
     (syntax-rules ()
       ((_ e) (cond 
-            ((string? e) (push! server-setup 'ip e))
-            ((integer? e) (push! server-setup 'port e))))
+            ((string? e) (push! *server-setup* 'ip e))
+            ((integer? e) (push! *server-setup* 'port e))))
       ((_ e1 e2) (begin
-              (push! server-setup 'ip e1)
-              (push! server-setup 'port e2)))))
+              (push! *server-setup* 'ip e1)
+              (push! *server-setup* 'port e2)))))
 
 
   (define server-on
     (lambda ()
-      (server handle-get handle-post server-setup server-setup))) 
+      (server handle-get handle-post *server-setup* *server-setup*))) 
  
  
  
