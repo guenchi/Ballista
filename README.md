@@ -44,25 +44,13 @@ router-level middleware:
 ```
 
 
-***install***
 
-`$ raven install ballista`
-
-
-
-***use***
-
-just
-```
-(server-on)
-```
-
-***[Manual](https://guenchi.gitbooks.io/igropyr/content/ballista.html)***
+***[Manual](https://guenchi.github.io/Ballista)***
 
 ***[Raven](http://ravensc.com)*** : Chez Scheme Package Manager 
 
-***[Igropyr](https://github.com/guenchi/Igropyr)*** is a async http-server for Chez Scheme
+***[Igropyr](https://guenchi.github.io/Igropyr)*** is a async http-server for Chez Scheme
 
-Ballista's sister framwork and its dependence: ***[Catapult](https://github.com/guenchi/Catapult)*** (purely functional)
+Ballista's sister framwork and its dependence: ***[Catapult](https://guenchi.github.io/Catapult)*** (purely functional)
 
 
