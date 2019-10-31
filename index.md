@@ -1,3 +1,7 @@
+
+![img](img/ballista.jpg)
+
+
 ***Installation with Raven***
 
 `$ raven install ballista`
