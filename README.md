@@ -1,5 +1,7 @@
 # Ballista
 
+## [Manual](https://guenchi.github.io/Ballista)
+
 ***Ballista*** is a ***Express style*** webframwork for ***Igropyr***
 
 ***Igropyr*** : ***Ballista*** = ***Node*** : ***Express***
@@ -43,11 +45,6 @@ router-level middleware:
 (listen-on "127.0.0.1" 8080)
 ```
 
-
-
-***[Manual](https://guenchi.github.io/Ballista)***
-
-***[Raven](http://ravensc.com)*** : Chez Scheme Package Manager 
 
 ***[Igropyr](https://guenchi.github.io/Igropyr)*** is a async http-server for Chez Scheme
 
