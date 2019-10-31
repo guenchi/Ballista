@@ -1,8 +1,8 @@
 # Ballista
 
-## [Manual](https://guenchi.github.io/Ballista)
-
 ***Ballista*** is a ***Express style*** webframwork for ***Igropyr***
+
+## [Manual](https://guenchi.github.io/Ballista)
 
 ***Igropyr*** : ***Ballista*** = ***Node*** : ***Express***
 
