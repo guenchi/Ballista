@@ -2,11 +2,11 @@
 
 ***Ballista*** is a ***Express style*** webframwork for ***Igropyr***
 
-## [Manual](https://guenchi.github.io/Ballista)
-
-***Igropyr*** : ***Ballista*** = ***Node*** : ***Express***
+### Igropyr : Ballista = Node : Express
 
 > ***Ballista*** is repackaged on ***Catapult*** basis to make the application easier. But no longer purely functional.
+
+## [Manual](https://guenchi.github.io/Ballista)
 
 ***easily to write the router***
 
