@@ -1,6 +1,6 @@
 (("name" . "ballista")
  ("version" . "0.5.8")
- ("description" . "Ballista is a Express style web framwork for Igropyr")
+ ("description" . "Ballista is an Express-style web framework for Igropyr")
  ("keywords"
    ("Scheme" "web" "framework" "Igropyr"))
  ("author" 
