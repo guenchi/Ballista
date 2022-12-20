@@ -1,6 +1,6 @@
 # Ballista
 
-***Ballista*** is a ***Express style*** webframwork for ***Igropyr***
+***Ballista*** is an ***Express-style*** web framework for ***Igropyr***
 
 ### Igropyr : Ballista = Node : Express
 
@@ -8,7 +8,7 @@
 
 ## [Manual](https://guenchi.github.io/Ballista)
 
-***easily to write the router***
+***easy to write the router***
 
 ```
 (get     "/"             index)
@@ -20,7 +20,7 @@
 (post    "/notes"        notes)
 ```
 
-***easily to control the process***
+***easy to control the process***
 
 application-level middleware:
 ```
@@ -36,7 +36,7 @@ router-level middleware:
 ```
 
 
-***easily to set up the server***
+***easy to set up the server***
 
 ```
 (staticpath "/usr/local/www/")
@@ -46,8 +46,8 @@ router-level middleware:
 ```
 
 
-***[Igropyr](https://guenchi.github.io/Igropyr)*** is a async http-server for Chez Scheme
+***[Igropyr](https://guenchi.github.io/Igropyr)*** is an async http-server for Chez Scheme
 
-Ballista's sister framwork and its dependence: ***[Catapult](https://guenchi.github.io/Catapult)*** (purely functional)
+Ballista's sister framework and dependency: ***[Catapult](https://guenchi.github.io/Catapult)*** (purely functional)
 
 

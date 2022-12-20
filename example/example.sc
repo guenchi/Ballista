@@ -1,11 +1,11 @@
 (import (igropyr http) 
         (ballista ballista))
 
-(printf "server is start, listen on port..~a\n" 8080)
+(printf "server is started, listening on port..~a\n" 8080)
 
 (define index
     (lambda x
-        (res "this is index")))
+        (res "this is the index")))
 
 (define user
     (lambda (x y)
@@ -21,7 +21,7 @@
 
 (define erro
     (lambda x
-        (res 200 "text/html" "<h1>erro</h1>")))
+        (res 200 "text/html" "<h1>error</h1>")))
 
 
 
